@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project MedBridge — Where kindness cures</title>
+  <meta name="description" content="Project MedBridge partners with trusted NGOs in India to deliver essential medicine to people who can't afford it. Every dollar funds a real person's treatment.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <img src="logo.png" alt="Project MedBridge logo" height="44" style="border-radius:8px;">
+      <span class="brand-name">Project <span>MedBridge</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li class="hide-mobile"><a href="about.html#faq">FAQ</a></li>
+      <li><a href="donate.html" class="btn btn-primary" style="padding:10px 22px;">Donate</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="container hero-grid">
+    <div class="reveal in">
+      <span class="eyebrow">Where kindness cures</span>
+      <h1>Medicine shouldn't depend on <em>a paycheck.</em></h1>
+      <p class="lead">
+        Project MedBridge partners with trusted NGOs across India to get essential
+        medicine — insulin, antibiotics, heart medication — to people who can't
+        afford it. You donate here in America. A real person gets treated there.
+        And we show you exactly who.
+      </p>
+      <div class="hero-actions">
+        <a href="donate.html" class="btn btn-primary">Meet the patients &amp; donate</a>
+        <a href="about.html" class="btn btn-outline">How we work</a>
+      </div>
+      <div class="hero-mini">
+        <div class="m"><b data-count="100" data-suffix="%">0%</b><small>goes to patients' medicine</small></div>
+        <div class="m"><b data-count="3">0</b><small>partner NGOs in India</small></div>
+        <div class="m"><b data-prefix="$" data-count="8">$0</b><small>≈ a month of medication</small></div>
+      </div>
+    </div>
+
+    <!-- Animated bridge: a donation crossing from the US to a patient in India -->
+    <div class="bridge-visual reveal in d2">
+      <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" aria-label="Animation of a donation crossing a bridge from the U.S. to a patient in India">
+        <!-- cross (echoes the logo) -->
+        <g fill="#1877F2">
+          <rect x="248" y="18" width="24" height="64" rx="6"/>
+          <rect x="228" y="38" width="64" height="24" rx="6"/>
+        </g>
+        <!-- back arch (sky) -->
+        <path d="M40 240 Q260 96 480 240" stroke="#29A3DC" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <!-- front arch (navy) -->
+        <path id="bridge-path" d="M64 252 Q260 122 456 252" stroke="#142E4D" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <!-- pylons -->
+        <g stroke="#142E4D" stroke-width="9" stroke-linecap="round">
+          <line x1="150" y1="205" x2="150" y2="256"/>
+          <line x1="260" y1="176" x2="260" y2="258"/>
+          <line x1="370" y1="205" x2="370" y2="256"/>
+        </g>
+        <!-- water -->
+        <path d="M30 272 Q80 264 130 272 T230 272 T330 272 T430 272 T500 272" stroke="#BFE0F7" stroke-width="5" fill="none" stroke-linecap="round">
+          <animate attributeName="d" dur="4s" repeatCount="indefinite"
+            values="M30 272 Q80 264 130 272 T230 272 T330 272 T430 272 T500 272;
+                    M30 272 Q80 280 130 272 T230 272 T330 272 T430 272 T500 272;
+                    M30 272 Q80 264 130 272 T230 272 T330 272 T430 272 T500 272"/>
+        </path>
+        <!-- endpoint labels -->
+        <g font-family="Source Sans 3, sans-serif" font-weight="700" font-size="15" fill="#142E4D">
+          <text x="64" y="292" text-anchor="middle">🇺🇸 You</text>
+          <text x="456" y="292" text-anchor="middle">A patient 🇮🇳</text>
+        </g>
+        <!-- the coin crossing the bridge -->
+        <g class="coin">
+          <circle r="15" fill="#F5B83D" stroke="#D89A1E" stroke-width="3"/>
+          <text y="6" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-weight="800" font-size="17" fill="#7A5B12">$</text>
+          <animateMotion dur="3.5s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+            <mpath href="#bridge-path"/>
+          </animateMotion>
+          <animate attributeName="opacity" dur="3.5s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;0.1;0.5;0.9;1"/>
+        </g>
+      </svg>
+      <div class="bridge-caption">Every donation <strong>crosses the bridge</strong> — from your card to a partner NGO to a patient's hands.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <h2>How your donation crosses the bridge</h2>
+      <p>Three steps. Full visibility the whole way.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step-card reveal">
+        <span class="n">1</span>
+        <div class="icon">💵</div>
+        <h3>You give from the U.S.</h3>
+        <p>Pick a specific patient's story, or give to the general Medicine Fund. Even $5 moves a funding bar.</p>
+      </div>
+      <div class="step-card reveal d1">
+        <span class="n">2</span>
+        <div class="icon">🌉</div>
+        <h3>We send it to partner NGOs</h3>
+        <p>On-the-ground organizations in India that already know their communities identify and verify every patient.</p>
+      </div>
+      <div class="step-card reveal d2">
+        <span class="n">3</span>
+        <div class="icon">💊</div>
+        <h3>Medicine reaches the patient</h3>
+        <p>The NGO purchases and delivers the treatment locally, then confirms it — and we update the patient's page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="section tinted">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat reveal">
+        <div class="num"><span data-count="100">0</span><span class="suffix">%</span></div>
+        <div class="label">of patient-directed donations go to their medicine</div>
+      </div>
+      <div class="stat reveal d1">
+        <div class="num"><span data-count="3">0</span></div>
+        <div class="label">partner NGOs serving communities across India</div>
+      </div>
+      <div class="stat reveal d2">
+        <div class="num">$<span data-count="8">0</span></div>
+        <div class="label">can cover a month of essential medication for one patient</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MISSION ============ -->
+<section class="section">
+  <div class="container split">
+    <div class="photo-frame reveal">
+      Photo placeholder — swap in a photo from one of your partner NGOs
+      (e.g. a community health camp or medicine distribution)
+    </div>
+    <div class="reveal d1">
+      <h2>Small donations. Real names. Visible impact.</h2>
+      <p>
+        In many underserved communities in India, a treatable condition becomes a
+        life-threatening one simply because a family can't spare a few hundred rupees
+        a month. That's often less than the cost of a lunch here.
+      </p>
+      <p>
+        We don't believe charity should feel like dropping money into a void. Every
+        campaign on our donation page is a specific person with a specific need — a
+        grandmother who needs blood pressure medication, a kid who needs an inhaler.
+        You can see their story, watch their funding bar fill up, and know when
+        they've been helped.
+      </p>
+      <a href="about.html" class="btn btn-secondary">Read our full story</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED PATIENTS ============ -->
+<section class="section tinted">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>People you can help right now</h2>
+      <p>These campaigns are active today. Click any card to read their full story and contribute.</p>
+    </div>
+    <div class="card-grid" id="featured-grid"></div>
+    <div style="text-align:center; margin-top: 40px;">
+      <a href="donate.html" class="btn btn-primary">See all patients</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTES ============ -->
+<!-- PLACEHOLDER QUOTES: replace with real donor / NGO quotes before launch -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <h2>Why people give</h2>
+    </div>
+    <div class="quotes-wrap reveal" id="quotes">
+      <div class="quote on">
+        <p>I gave $10 during lunch and by that weekend Asha's insulin was fully funded. Watching that bar fill was addicting in the best way.</p>
+        <div class="who">— Sample donor quote (replace with a real one)</div>
+      </div>
+      <div class="quote">
+        <p>Knowing exactly whose medicine my money bought made this feel completely different from any other donation I've made.</p>
+        <div class="who">— Sample donor quote (replace with a real one)</div>
+      </div>
+      <div class="quote">
+        <p>The MedBridge model works because the funds arrive tied to a verified patient we already know. It removes every excuse for delay.</p>
+        <div class="who">— Sample partner NGO quote (replace with a real one)</div>
+      </div>
+    </div>
+    <div class="quote-dots" id="quote-dots"></div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band">
+  <h2>Be someone's bridge to treatment.</h2>
+  <p>Even $5 moves a funding bar. Even one share helps a story find its donor.</p>
+  <a href="donate.html" class="btn btn-gold">Donate now</a>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Project MedBridge</h4>
+        <p>Connecting American donors with trusted NGOs in India to fund essential medicine for underserved communities.</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="donate.html">Donate</a>
+        <a href="about.html">About Us</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:hello@projectmedbridge.org">hello@projectmedbridge.org</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Project MedBridge. All patient stories are shared with consent through our partner NGOs.</div>
+  </div>
+</footer>
+
+<!-- Modal (shared) -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+    <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+    <div class="card-photo" id="modal-photo">Photo placeholder</div>
+    <div class="modal-body">
+      <h3 id="modal-name"></h3>
+      <div class="meta" id="modal-meta"></div>
+      <p class="story" id="modal-story"></p>
+      <div class="partner-note" id="modal-partner"></div>
+      <div class="fund-bar-wrap">
+        <div class="fund-amounts">
+          <span class="raised" id="modal-raised"></span>
+          <span class="goal" id="modal-goal"></span>
+        </div>
+        <div class="fund-bar" style="position:relative;"><div class="fund-fill" id="modal-fill"></div></div>
+      </div>
+      <div class="amount-picker">
+        <div class="ap-label">Choose an amount</div>
+        <div class="amount-row" id="amount-row">
+          <button class="amt" data-amt="5">$5</button>
+          <button class="amt on" data-amt="10">$10</button>
+          <button class="amt" data-amt="25">$25</button>
+          <button class="amt" data-amt="50">$50</button>
+          <input class="amt-custom" id="amt-custom" type="number" min="1" placeholder="Custom $">
+        </div>
+        <div class="impact-line" id="impact-line"></div>
+      </div>
+      <div class="card-actions" style="margin-top:20px;">
+        <a href="#" class="btn btn-primary" id="modal-donate">Donate $10</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate — Project MedBridge</title>
+  <meta name="description" content="Fund essential medicine for a specific patient in India. Read their story, watch their funding bar fill, and know exactly who you helped.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <img src="logo.png" alt="Project MedBridge logo" height="44" style="border-radius:8px;">
+      <span class="brand-name">Project <span>MedBridge</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li class="hide-mobile"><a href="about.html#faq">FAQ</a></li>
+      <li><a href="donate.html" class="btn btn-primary active" style="padding:10px 22px;">Donate</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="section" style="padding-top:56px;">
+  <div class="container">
+    <div class="section-head reveal in">
+      <span class="eyebrow">Active campaigns</span>
+      <h2>Choose a person to help</h2>
+      <p>
+        Every card is a real patient identified by one of our partner NGOs in India.
+        Click a card to read their story. When a funding bar fills, we send the money
+        and the NGO delivers the medicine — then we mark the campaign complete.
+      </p>
+    </div>
+
+    <!-- Live totals across all campaigns (computed automatically) -->
+    <div class="totals-panel reveal in d1">
+      <div class="line">
+        <span class="big" id="total-raised">$0</span>
+        <span class="sub" id="total-sub"></span>
+      </div>
+      <div class="fund-bar"><div class="fund-fill" id="total-fill"></div></div>
+    </div>
+
+    <!-- Filters (built automatically from patient tags) -->
+    <div class="filter-row" id="filter-row"></div>
+
+    <div class="card-grid" id="patient-grid"></div>
+    <p class="empty-msg" id="empty-msg">No campaigns match this filter right now — check back soon!</p>
+
+    <!-- General fund -->
+    <div class="general-fund reveal">
+      <div>
+        <h3>Not sure who to pick? Give to the Medicine Fund.</h3>
+        <p>General donations go wherever the need is most urgent — usually to patients whose campaigns are closest to their deadline, or to restock our partner NGOs' community pharmacies.</p>
+      </div>
+      <a href="#" class="btn btn-gold donate-link">Give to the general fund</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Project MedBridge</h4>
+        <p>Connecting American donors with trusted NGOs in India to fund essential medicine for underserved communities.</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="donate.html">Donate</a>
+        <a href="about.html">About Us</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:hello@projectmedbridge.org">hello@projectmedbridge.org</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Project MedBridge. All patient stories are shared with consent through our partner NGOs.</div>
+  </div>
+</footer>
+
+<!-- Modal (shared) -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+    <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+    <div class="card-photo" id="modal-photo">Photo placeholder</div>
+    <div class="modal-body">
+      <h3 id="modal-name"></h3>
+      <div class="meta" id="modal-meta"></div>
+      <p class="story" id="modal-story"></p>
+      <div class="partner-note" id="modal-partner"></div>
+      <div class="fund-bar-wrap">
+        <div class="fund-amounts">
+          <span class="raised" id="modal-raised"></span>
+          <span class="goal" id="modal-goal"></span>
+        </div>
+        <div class="fund-bar" style="position:relative;"><div class="fund-fill" id="modal-fill"></div></div>
+      </div>
+      <div class="amount-picker">
+        <div class="ap-label">Choose an amount</div>
+        <div class="amount-row" id="amount-row">
+          <button class="amt" data-amt="5">$5</button>
+          <button class="amt on" data-amt="10">$10</button>
+          <button class="amt" data-amt="25">$25</button>
+          <button class="amt" data-amt="50">$50</button>
+          <input class="amt-custom" id="amt-custom" type="number" min="1" placeholder="Custom $">
+        </div>
+        <div class="impact-line" id="impact-line"></div>
+      </div>
+      <div class="card-actions" style="margin-top:20px;">
+        <a href="#" class="btn btn-primary" id="modal-donate">Donate $10</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
