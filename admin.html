@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donations — Project MedBridge (Admin)</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body { background: var(--pale); }
+  .admin-wrap { max-width: 900px; margin: 50px auto; padding: 0 24px 60px; }
+  .admin-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; flex-wrap:wrap; gap:12px; }
+  table { width:100%; border-collapse: collapse; background: var(--white); border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow); }
+  th, td { padding: 12px 16px; text-align: left; font-size: 0.92rem; border-bottom: 1px solid var(--border); }
+  th { background: var(--ink); color: var(--white); font-weight:700; }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background: var(--pale); }
+  .status-pill { padding:3px 10px; border-radius:999px; font-size:0.78rem; font-weight:700; }
+  .status-pill.completed { background:#E8F7EC; color:#1D6B3A; }
+  .status-pill.rejected { background:#FDEBE3; color:var(--clay); }
+  #msg { color: var(--gray); padding: 30px; text-align:center; }
+  .gate { max-width:420px; margin:120px auto; text-align:center; }
+  .gate input { width:100%; padding:12px 14px; border-radius:12px; border:1.5px solid var(--border); font-size:1rem; margin:16px 0; font-family:inherit; }
+</style>
+</head>
+<body>
+
+<!-- NOTE: this is a convenience view, not real security — the password check
+     below happens in the browser, so treat this page as "hidden", not "locked".
+     The Google Sheet itself (private, only shared with your team) is the
+     actually-secure place to view donor data. -->
+<div class="gate" id="gate">
+  <h2>Project MedBridge — Admin</h2>
+  <p style="color:var(--gray)">Enter the admin password to view donations.</p>
+  <input type="password" id="pw" placeholder="Password">
+  <button class="btn btn-primary" id="pw-submit">View donations</button>
+</div>
+
+<div class="admin-wrap" id="admin-wrap" style="display:none;">
+  <div class="admin-head">
+    <h2>Donations</h2>
+    <span id="total-line" style="color:var(--gray)"></span>
+  </div>
+  <div id="msg">Loading…</div>
+  <table id="table" style="display:none;">
+    <thead>
+      <tr><th>Date</th><th>Donor</th><th>Email</th><th>Patient</th><th>Amount</th><th>Status</th></tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+
+<script>
+  // Change this to whatever you want — again, this only hides the page from
+  // casual visitors, it does not encrypt or truly protect the data.
+  const ADMIN_PASSWORD = "changeme";
+  const APPS_SCRIPT_URL = ""; // paste the same Web app URL used in script.js
+
+  document.getElementById("pw-submit").addEventListener("click", checkPassword);
+  document.getElementById("pw").addEventListener("keydown", (e) => { if (e.key === "Enter") checkPassword(); });
+
+  function checkPassword() {
+    if (document.getElementById("pw").value === ADMIN_PASSWORD) {
+      document.getElementById("gate").style.display = "none";
+      document.getElementById("admin-wrap").style.display = "block";
+      loadDonations();
+    } else {
+      alert("Wrong password.");
+    }
+  }
+
+  async function loadDonations() {
+    if (!APPS_SCRIPT_URL) {
+      document.getElementById("msg").textContent =
+        "Set APPS_SCRIPT_URL at the top of this file's <script> tag first.";
+      return;
+    }
+    try {
+      const res = await fetch(APPS_SCRIPT_URL);
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || "Unknown error");
+      const rows = data.donations;
+      if (!rows.length) {
+        document.getElementById("msg").textContent = "No donations logged yet.";
+        return;
+      }
+      const completed = rows.filter(r => r.status === "COMPLETED");
+      const total = completed.reduce((s, r) => s + Number(r.amount || 0), 0);
+      document.getElementById("total-line").textContent =
+        `$${total.toFixed(2)} total · ${completed.length} completed donation${completed.length === 1 ? "" : "s"}`;
+
+      document.getElementById("tbody").innerHTML = rows.map(r => `
+        <tr>
+          <td>${new Date(r.timestamp).toLocaleString()}</td>
+          <td>${escapeHtml(r.donorName || "—")}</td>
+          <td>${escapeHtml(r.donorEmail || "—")}</td>
+          <td>${escapeHtml(r.patientName || r.patientId || "—")}</td>
+          <td>$${Number(r.amount || 0).toFixed(2)}</td>
+          <td><span class="status-pill ${r.status === "COMPLETED" ? "completed" : "rejected"}">${escapeHtml(String(r.status))}</span></td>
+        </tr>`).join("");
+
+      document.getElementById("msg").style.display = "none";
+      document.getElementById("table").style.display = "table";
+    } catch (err) {
+      document.getElementById("msg").textContent = "Couldn't load donations: " + err.message;
+    }
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  }
+</script>
+</body>
+</html>
